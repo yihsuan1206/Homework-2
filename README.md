@@ -6,6 +6,7 @@ Please complete the report problem below:
 Provide your profitable path, the amountIn, amountOut value for each swap, and your final reward (your tokenB balance).
 
 > Solution
+
 path: tokenB->tokenA->tokenE->tokenD->tokenC->tokenB, tokenB balance=20.042339589188174
 
 
@@ -20,6 +21,7 @@ path: tokenB->tokenA->tokenE->tokenD->tokenC->tokenB, tokenB balance=20.04233958
 What is slippage in AMM, and how does Uniswap V2 address this issue? Please illustrate with a function as an example.
 
 > Solution
+
 Slippage in AMM refers to the difference between the expected price of a trade and the actual price at which the trade is executed. Uniswap V2 addresses the slippage issue by implementing a constant product formula for its liquidity pools. This formula ensures that the product of the quantities of both tokens remains constant, which helps maintain a relatively stable price despite changes in trading volume.
 ```
 function trade(uint256 amountIn, uint256 amountOutMin, address[] memory path) external {
@@ -53,6 +55,7 @@ function trade(uint256 amountIn, uint256 amountOutMin, address[] memory path) ex
 Please examine the mint function in the UniswapV2Pair contract. Upon initial liquidity minting, a minimum liquidity is subtracted. What is the rationale behind this design?
 
 > Solution
+
 In the UniswapV2Pair contract, the mint function is where new liquidity tokens are created when someone adds tokens to a liquidity pool for the first time. This function subtracts a minimum amount of liquidity when the initial tokens are added.
 
 The reason for subtracting this minimum amount of liquidity is to make sure that the liquidity pool starts off with a decent amount of liquidity. This is important because:
@@ -67,6 +70,7 @@ Lastly, having enough liquidity helps protect the pool from any malicious activi
 Investigate the minting function in the UniswapV2Pair contract. When depositing tokens (not for the first time), liquidity can only be obtained using a specific formula. What is the intention behind this?
 
 > Solution
+
 In the UniswapV2Pair contract, when depositing tokens (not for the first time), liquidity can only be obtained using a specific formula. The intention behind this is to ensure that each time liquidity is added, the newly added liquidity remains balanced with the existing liquidity. This specific formula is based on the constant product invariant of the Uniswap V2 liquidity pool, which ensures that the quantity of tokens in the pool stays relatively balanced. By enforcing this formula, Uniswap maintains stability and efficiency in the liquidity pool, providing a more reliable and predictable trading experience.
 
 
@@ -74,6 +78,7 @@ In the UniswapV2Pair contract, when depositing tokens (not for the first time), 
 What is a sandwich attack, and how might it impact you when initiating a swap?
 
 > Solution
+
 A sandwich attack is a type of front-running attack that targets decentralized exchanges and AMM like Uniswap. In a sandwich attack, an attacker exploits the predictability of the transaction execution order in the memory pool to manipulate prices in their favor. 
 
 When initiating a swap, a sandwich attack can have significant impacts for the trader. It often leads to increased slippage, meaning traders receive fewer tokens than anticipated for their swaps. This can result in traders paying higher prices for tokens or receiving lower prices than expected due to the manipulated prices caused by the attack. Such experiences can lead to frustration among traders and deter them from using the platform in the future, especially if sandwich attacks occur frequently. Overall, the impact of a sandwich attack extends beyond immediate financial losses to affect the trader's trust and confidence in the platform.
