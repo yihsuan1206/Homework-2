@@ -78,8 +78,8 @@ for path in all_test_path:
         max_profit_path = rt_paths
 
 print("path: tokenB", end='')
-for tokenLetter in rt_paths:
-    print(f"->token{tokenLetter}", end="")
+for token in rt_paths:
+    print(f"->{token}", end="")
 print(f", tokenB balance={max_profit}")
     
 
