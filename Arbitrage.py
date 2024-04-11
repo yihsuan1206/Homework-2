@@ -57,6 +57,8 @@ def test(test_path):
         
         reserve0, reserve1 = consider_liquidity_reverse("token"+token_1st, "token"+token_2nd)
         delta_y = getAmountOut(amount_in, reserve0, reserve1)
+
+        # print(f"Swap({token_1st}, {token_2nd}), AmountIn:{amount_in}, AmountOut:{delta_y}")
         # print(f"->token{token_2nd}", end="")
         rt_paths.append(f"token{token_2nd}")
         token_1st = token_2nd
@@ -69,16 +71,18 @@ def test(test_path):
 
 all_test_path = getPerMutation()
 # print(f"get {len(all_test_path)} paths")
+
 max_profit = 0
 max_profit_path = []
 for path in all_test_path:
     profit, rt_paths = test(path)
+    # print(profit)
     if profit > max_profit:
         max_profit = profit
         max_profit_path = rt_paths
 
 print("path: tokenB", end='')
-for token in rt_paths:
+for token in max_profit_path:
     print(f"->{token}", end="")
 print(f", tokenB balance={max_profit}")
     
