@@ -21,7 +21,7 @@ What is slippage in AMM, and how does Uniswap V2 address this issue? Please illu
 
 > Solution
 Slippage in AMM refers to the difference between the expected price of a trade and the actual price at which the trade is executed. Uniswap V2 addresses the slippage issue by implementing a constant product formula for its liquidity pools. This formula ensures that the product of the quantities of both tokens remains constant, which helps maintain a relatively stable price despite changes in trading volume.
-
+```
 function trade(uint256 amountIn, uint256 amountOutMin, address[] memory path) external {
     // Ensure the input token is the first token in the path
     require(path[0] == inputToken, "Input token mismatch");
@@ -46,7 +46,7 @@ function trade(uint256 amountIn, uint256 amountOutMin, address[] memory path) ex
 
     // Emit event or perform other actions
 }
-
+```
 
 
 ## Problem 3
